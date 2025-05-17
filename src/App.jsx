@@ -7,7 +7,7 @@ function App() {
 	const [projectState, setProjectsState] = useState({
 		//currentAction : 'Adding or selecting-project',
 		selectedProjectId: undefined,
-		projects: [],
+		projects: []
 	})
 	function handleStartAddProject() {
 		setProjectsState((prevState) => {
@@ -21,14 +21,17 @@ function App() {
 	// adding  project
 	function handleAddProject(projectData) {
 		setProjectsState((prevState) => {
+			const projectId = Math.random()
 			// update state based on old state
 			const newProjects = {
 				// here contains name, description, targetDate
 				...projectData,
-				id: Date.now().toString(36),
+				// id: Date.now().toString(36),
+				id: projectId
 			}
 			return {
 				...prevState, // existing data added
+				selectedProjectId: undefined,
 				projects: [...prevState.projects, newProjects],
 			}
 		})
@@ -47,7 +50,9 @@ function App() {
 
 	return (
 		<main className="h-screen my-8 flex gap-8">
-			<Sidebar onStartAddProject={handleStartAddProject} />
+			<Sidebar onStartAddProject={handleStartAddProject} 
+			projects = {projectState.projects}
+			/>
 			{/* <ProjectSelect onStartAddProject={handleStartAddProject} /> */}
 			{projectContent}
 		</main>

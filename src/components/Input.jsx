@@ -2,7 +2,7 @@ import React, { forwardRef } from "react"
 
 // using forwardRef we wrap the function with extra parameter ref we can send the info to textarea and input
 
-const Input = forwardRef(({ label, textarea, ...props }, ref) => {
+const Input = forwardRef(function Input({ label, textarea, ...props }, ref){
 	const classes =
 		"w-full p-1 bg-stone-200 focus:outline-none focus:border-b-2  text-stone-700"
 	return (

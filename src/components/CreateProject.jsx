@@ -1,6 +1,5 @@
 import React from "react"
 import Input from "./Input.jsx"
-import Button from "./Button.jsx"
 import { useRef } from "react"
 import Modal from "./Modal.jsx"
 
@@ -37,7 +36,7 @@ const CreateProject = ({ onAddProject }) => {
 
 	return (
 		<>
-		<Modal ref={modal}>
+		<Modal ref={modal} buttonCaption="Okay">
 			<h2>Invalid</h2>
 			<p>Oops ... looks like you forgot to enter a value.</p>
 			<p>Please make sure you provide a valid value for every input field.</p>
@@ -48,17 +47,16 @@ const CreateProject = ({ onAddProject }) => {
 					{/* <button className="px-4 py-1  text-black hover:text-slate-50 rounded-md hover:bg-stone-700 hover:border-none">
 						Cancel
 					</button> */}
-					<Button className="px-2 py-2 rounded-md bg-stone-400  text-stone-900  focus:border-r-2 hover:bg-stone-900  hover:text-stone-100">
+					<button className="px-2 py-2 rounded-md bg-stone-400  text-stone-900  focus:border-r-2 hover:bg-stone-900  hover:text-stone-100">
 						Cancel
-					</Button>
+					</button>
 				</li>
 				<li>
-					<Button
+					<button
 						className="px-2 py-2 rounded-md bg-stone-400  text-stone-900  focus:border-r-2 hover:bg-stone-900  hover:text-stone-100"
-						onClick={handleSave}
-					>
+						onClick={handleSave}>
 						Save
-					</Button>
+					</button>
 				</li>
 			</menu>
 			<div>

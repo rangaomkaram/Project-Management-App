@@ -1,8 +1,6 @@
-import React, { forwardRef, useImperativeHandle } from 'react'
-import { useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from "react"
 
-import { createPortal } from 'react-dom';
-
+import { createPortal } from "react-dom"
 
 /* 
 
@@ -17,29 +15,28 @@ we'll explore the functionalities and usecases of both forwardRef and useImperat
 createPortal returns a React node that can be included into JSX or returned from a React component. If React encounters it in the render output, it will place the provided children inside the provided domNode.
 */
 
-const Modal = forwardRef(function Modal({children}, ref) {
-  const dialog =  useRef();
-  
-  useImperativeHandle(ref,()=>{
-    return{
-      open(){
-        dialog.current.showModal();
-      }
-    }
-  });
+const Modal = forwardRef(function Modal({ children, buttonCaption }, ref) {
+	const dialog = useRef()
 
-  return createPortal(
-    <dialog>
-      {children}
-     //form method
-     <form  method="dialog">
-      <button>Close</button>
-     </form>
-    </dialog>,
-   
-    document.getElementById('modal-root')
-  );
-  
-});
+	useImperativeHandle(ref, () => {
+		return {
+			open() {
+				dialog.current.showModal();
+			},
+		}
+	})
 
-export default Modal;
+	return createPortal(
+		<dialog ref={dialog} className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md">
+			{children}
+			//form method
+			<form method="dialog">
+				{/* <button>Close</button> */}
+				{/* for dynamic */}
+				<button>{buttonCaption}</button>
+			</form>
+		</dialog>,document.getElementById('modal-root')
+	)
+})
+
+export default Modal
